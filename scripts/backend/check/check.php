@@ -8,7 +8,7 @@ api("check", function ($action, $parameters) {
     global $db;
     if ($action === "give") {
         $giveResult = new stdClass();
-        $giveResult->shash = shashRandom(3);
+        $giveResult->shash = shashRandom(2);
         $giveResult->seshID = random(128);
         $db->{$giveResult->seshID} = $giveResult->shash;
         save();
@@ -16,7 +16,7 @@ api("check", function ($action, $parameters) {
     } else if ($action === "check") {
         if (isset($parameters->seshID) && isset($parameters->result)) {
             if (isset($db->{$parameters->seshID})) {
-                if (strlen($parameters->result) === 4) {
+                if (strlen($parameters->result) >= 3) {
                     if (checkPOW($parameters->seshID, $parameters->result)) {
                         unset($db->{$parameters->seshID});
                         save();
@@ -43,7 +43,7 @@ function checkPOW($sid, $result)
 {
     global $db;
     $str = $db->$sid . $result;
-    return startsWith(hash("sha256", $str), $str);
+    return strpos(hash("sha256", $str), $str) !== false;
 }
 
 function shashRandom($l = 3)
