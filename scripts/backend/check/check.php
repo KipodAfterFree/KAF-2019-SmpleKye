@@ -15,7 +15,7 @@ api("check", function ($action, $parameters) {
         return [true, $giveResult];
     } else if ($action === "check") {
         if (isset($parameters->seshID) && isset($parameters->result)) {
-            if (isset($db{$parameters->seshID})) {
+            if (isset($db->{$parameters->seshID})) {
                 if (strlen($parameters->result) === 4) {
                     if (checkPOW($parameters->seshID, $parameters->result)) {
                         unset($db->{$parameters->seshID});
@@ -50,7 +50,7 @@ function shashRandom($l = 3)
 {
     $current = str_shuffle("0123456789abcdef")[0];
     if ($l > 0) {
-        return $current . random($l - 1);
+        return $current . shashRandom($l - 1);
     }
     return "";
 }
