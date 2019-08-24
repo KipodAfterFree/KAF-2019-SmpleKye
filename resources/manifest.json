@@ -1,0 +1,22 @@
+{
+  "name": "SmpleKye",
+  "short_name": "SmpleKye",
+  "description": "i[sw]do(*&=0)<<7=9",
+  "start_url": "../index.html",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "display": "standalone",
+  "orientation": "natural",
+  "icons": [
+    {
+      "src": "../images/icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "../images/icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
