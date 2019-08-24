@@ -1,6 +1,12 @@
-<p>Definition of a simple key:</p>
-<p>You are given this string:</p>
-<p id="given"></p>
-<p>Now you need to find a 4-char string that when combined to this string, will match the 4+len(string)-chars of its sha256.</p>
-<input id="in" placeholder="4-char string"/>
-<button onclick="give();">Do it.</button>
+<div column id="home">
+    <p>Definition of a simple key:</p>
+    <p>You are given this string:</p>
+    <p id="given"></p>
+    <p>Now you need to find a 4-char string that when combined to this string, will match the 4+len(string)-chars of its sha256.</p>
+    <input id="in" placeholder="4-char string"/>
+    <button onclick="send();">Do it.</button>
+</div>
+<div column id="results">
+    <p id="r"></p>
+    <button onclick="window.location.reload()">Again</button>
+</div>

@@ -3,4 +3,6 @@ body {
     max-width: 460px;
 }
 
-/* App Style */
+#home > p {
+    color: white;
+}

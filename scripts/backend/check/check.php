@@ -8,7 +8,7 @@ api("check", function ($action, $parameters) {
     global $db;
     if ($action === "give") {
         $giveResult = new stdClass();
-        $giveResult->shash = mRand();
+        $giveResult->shash = shashRandom(3);
         $giveResult->seshID = random(128);
         $db->{$giveResult->seshID} = $giveResult->shash;
         save();
@@ -18,8 +18,10 @@ api("check", function ($action, $parameters) {
             if (isset($db{$parameters->seshID})) {
                 if (strlen($parameters->result) === 4) {
                     if (checkPOW($parameters->seshID, $parameters->result)) {
-
-                    }else{
+                        unset($db->{$parameters->seshID});
+                        save();
+                        return [true, "NUFE{ju57_4_51mpl3_pr00F_0F_w0Rk}"];
+                    } else {
                         return [false, "Wrong PoW"];
                     }
                 } else {
@@ -37,13 +39,14 @@ api("check", function ($action, $parameters) {
 
 echo json_encode($result);
 
-function checkPOW($sid, $result){
+function checkPOW($sid, $result)
+{
     global $db;
-    $str = $db->$sid.$result;
-    return startsWith(, $str);
+    $str = $db->$sid . $result;
+    return startsWith(hash("sha256", $str), $str);
 }
 
-function mRand($l = 3)
+function shashRandom($l = 3)
 {
     $current = str_shuffle("0123456789abcdef")[0];
     if ($l > 0) {
