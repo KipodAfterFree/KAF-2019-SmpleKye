@@ -20,7 +20,7 @@ api("check", function ($action, $parameters) {
                     if (checkPOW($parameters->seshID, $parameters->result)) {
                         unset($db->{$parameters->seshID});
                         save();
-                        return [true, "NUFE{ju57_4_51mpl3_pr00F_0F_w0Rk}"];
+                        return [true, "KAF{ju57_4_51mpl3_pr00F_0F_w0Rk}"];
                     } else {
                         return [false, "Wrong PoW"];
                     }
